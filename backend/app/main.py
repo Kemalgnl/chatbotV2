@@ -19,21 +19,18 @@ origins = [
     "https://68f8d9880b0df950cbb1e182--bespoke-pavlova-a1e252.netlify.app",
     "https://bespoke-pavlova-a1e252.netlify.app",
     "http://localhost:5173",
-    "http://127.0.0.1:5173",
-      
+    "http://127.0.0.1:5173",     
 ]
-app.include_router(upload.router)
-app.include_router(query.router)
-app.include_router(search.router)  
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins, 
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
+app.include_router(upload.router)
+app.include_router(query.router)
+app.include_router(search.router)  
 # http://localhost:8080/
 @app.get("/")
 def read_root():
