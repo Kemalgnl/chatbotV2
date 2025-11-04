@@ -8,7 +8,5 @@ langchain-core==0.1.52
 langchain-google-genai==1.0.3
 python-dotenv
 faiss-cpu
-pip install fastapi sqlalchemy mysql-connector-python uvicorn
-JSONLoader
-TextLoader
-Docx2txtLoader
+sqlalchemy
+mysql-connector-python
