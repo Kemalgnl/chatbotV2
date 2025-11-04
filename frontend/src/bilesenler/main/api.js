@@ -12,6 +12,7 @@ export async function askQuestion(question, file = null) {
     });
 
     */
+    /*localde çalıştırmak için    const response = await fetch("http://127.0.0.1:8000/ask", { */
     const response = await fetch("https://chatbotprojesi-9.onrender.com/ask", {
       method: "POST",
       body: formData,
@@ -35,6 +36,7 @@ export async function uploadFile(file, question) {
   formData.append("question", question);
 
   try {
+    /*localde çalıştırmak için      const response = await fetch("http://localhost:8000/askWithfile", {*/
     const response = await fetch("https://chatbotprojesi-9.onrender.com/askWithfile", {
       method: "POST",
       body: formData,
@@ -61,6 +63,7 @@ export async function findPdf(question) {
   const formData = new FormData();
   formData.append("aranan_kelime", question);
   try {
+    /*localde çalıştırmak için     const response = await fetch("http://localhost:8000/findPdf", {*/
     const response = await fetch("https://chatbotprojesi-9.onrender.com/findPdf", {
       method: "POST",
       body: formData,
