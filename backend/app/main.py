@@ -58,7 +58,7 @@ def uploaddocument(file: UploadFile = File(...)):
     
 async def restart_server():
     await asyncio.sleep(10) 
-    url = "https://chatbotprojesi-8.onrender.com/" 
+    url = "https://chatbotprojesi-9.onrender.com/" 
     while True:
         try:
             async with httpx.AsyncClient() as client:
