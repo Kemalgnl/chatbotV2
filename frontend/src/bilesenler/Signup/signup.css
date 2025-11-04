@@ -1,0 +1,77 @@
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--main-bg, #f5f5f5);
+  transition: background-color 0.3s ease;
+}
+
+.auth-card {
+  background-color: var(--card-bg, #ffffff);
+  color: var(--text-color, #000000);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 320px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.auth-card h2 {
+  margin-bottom: 1.5rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auth-input {
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 1rem;
+}
+
+.auth-input:focus {
+  border-color: #888;
+}
+
+.auth-button {
+  background-color: #4d4949;
+  color: #fff;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.auth-button:hover {
+  background-color: #363434;
+}
+
+.toggle-text {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.toggle-text span {
+  color: #007bff;
+  cursor: pointer;
+}
+
+.toggle-text span:hover {
+  text-decoration: underline;
+}
+
+/* 🌙 Dark mode uyumu */
+body.dark-mode .auth-container {
+  --main-bg: #363434;
+  --card-bg: #4d4949;
+  --text-color: #ffffff;
+}
