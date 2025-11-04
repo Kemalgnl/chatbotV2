@@ -57,18 +57,20 @@ def uploaddocument(file: UploadFile = File(...)):
    
     
 async def restart_server():
-    await asyncio.sleep(10) 
     url = "https://chatbotprojesi-9.onrender.com/" 
     while True:
         try:
-            async with httpx.AsyncClient() as client:
-                await client.get(url)
+            async with httpx.AsyncClient() as istemci:
+                await istemci.get(url)
                 print("Ping gönderildi!")
-        except Exception as e:
-            print("Ping başarısız:", e)
-        await asyncio.sleep(50)  
+        except Exception as hata:
+            print("Ping başarısız:", hata)
+        await asyncio.sleep(50) 
 
-app.router.lifespan_context = restart_server
-    
+@app.on_event("startup")
+async def uygulama_baslangici():
+    asyncio.create_task(restart_server())
+    print("Uygulama başlatıldı, ping döngüsü çalışıyor...")
+
 
 
