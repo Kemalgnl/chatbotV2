@@ -27,7 +27,7 @@ VECTOR_DB_PATH = os.path.abspath(
 )
 TXT_PATH = Path("data/vector_db/all_texts.txt")
 
-BASE_DIR = Path(__file__).resolve().parents[2]
+BASE_DIR = Path(__file__).resolve().parents[3]
 TEMP_TXT = BASE_DIR / "data" / "vector_db" / "temp.txt"
 
 
@@ -118,7 +118,5 @@ async def ask_question_withfile(question: str = Form(...),file: UploadFile | Non
     await upload_document(file)
     
     relevant_chunks = findPart(question, TEMP_TXT)
-
+     
     return await CreateResult(relevant_chunks,question,oldQuestionAndAnswer)
-
-
