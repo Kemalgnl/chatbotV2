@@ -27,7 +27,7 @@ VECTOR_DB_PATH = os.path.abspath(
 )
 TXT_PATH = Path("data/vector_db/all_texts.txt")
 
-BASE_DIR = Path(__file__).resolve().parents[3]
+BASE_DIR = Path(__file__).resolve().parents[2]
 TEMP_TXT = BASE_DIR / "data" / "vector_db" / "temp.txt"
 
 
