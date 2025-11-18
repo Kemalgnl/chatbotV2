@@ -134,8 +134,11 @@ const Main = () => {
     if (!question) return;
     let data;
 
+    console.log(isClickSearch);
+
     if (file && isClickSearch === false) {
       data = await uploadFile(file, question);
+      console.log("girdiniz ");
       setIsFileExist(0);
       setFile(null);
     } else if (isClickSearch === true) {
@@ -145,6 +148,7 @@ const Main = () => {
       data = await askQuestion(question, null);
       isClickSearch = false;
     } else {
+      console.log("dosya hatası devam");
       data = await askQuestion(question, null);
     }
 
@@ -435,7 +439,10 @@ const Main = () => {
                   {" "}
                   <FaMicrophone />
                 </button>
-                <button onClick={() => testQuestion(false)} className="sendButton">
+                <button
+                  onClick={() => testQuestion(false)}
+                  className="sendButton"
+                >
                   <IoSend />
                 </button>
               </div>
