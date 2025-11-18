@@ -408,7 +408,7 @@ const Main = () => {
                 onChange={(e) => setQuestion(e.target.value)}
                 type="text"
                 placeholder="write here"
-                onKeyDown={(e) => e.key === "Enter" && testQuestion()}
+                onKeyDown={(e) => e.key === "Enter" && testQuestion(false)}
               />
               <div className="searchicons">
                 <button
@@ -435,7 +435,7 @@ const Main = () => {
                   {" "}
                   <FaMicrophone />
                 </button>
-                <button onClick={testQuestion} className="sendButton">
+                <button onClick={() => testQuestion(false)} className="sendButton">
                   <IoSend />
                 </button>
               </div>
