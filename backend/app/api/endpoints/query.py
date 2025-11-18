@@ -27,7 +27,8 @@ VECTOR_DB_PATH = os.path.abspath(
 )
 TXT_PATH = Path("data/vector_db/all_texts.txt")
 
-TEMP_TXT = Path("data/vector_db/temp.txt")
+BASE_DIR = Path(__file__).resolve().parents[3]
+TEMP_TXT = BASE_DIR / "data" / "vector_db" / "temp.txt"
 
 
 def findPart(question: str, txt_path: str, top_k: int = 5):
@@ -118,14 +119,7 @@ async def ask_question_withfile(question: str = Form(...),file: UploadFile | Non
     
     await upload_document(file)
     
-    with open(TEMP_TXT, "r", encoding="utf-8") as f:
-        content = f.read()
-        
-    try:
-        relevant_chunks = findPart(question, content)
-    except Exception as e:
-        print(f"TXT dosyası okunamadı: ")
-        relevant_chunks = []
+    relevant_chunks = findPart(question, TEMP_TXT)
 
     return await CreateResult(relevant_chunks,question,oldQuestionAndAnswer)
 
