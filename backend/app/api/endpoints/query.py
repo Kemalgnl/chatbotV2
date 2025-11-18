@@ -96,8 +96,6 @@ async def CreateResult(relevant_chunks,question,oldQuestionAndAnswer=oldQuestion
 async def ask_question(question: str = Form(...), txt_file: UploadFile | None = File(None)):
     global oldQuestionAndAnswer
 
-    with open(TXT_PATH, "r", encoding="utf-8") as f:
-        content = f.read()
     if txt_file:
         file_path = UPLOAD_DIR / txt_file.filename
         with open(file_path, "wb") as f:
