@@ -17,6 +17,8 @@ import re
 from app.api.endpoints.upload import upload_document
 from io import BytesIO
 
+from langchain_community.vectorstores import FAISS
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
 router = APIRouter(tags=["Soru-Cevap"])
 
@@ -102,7 +104,9 @@ async def ask_question(question: str = Form(...), txt_file: UploadFile | None = 
             shutil.copyfileobj(txt_file.file, f)
 
     try:
-        relevant_chunks = findPart(question, TXT_PATH)
+        #relevant_chunks = findPart(question, TXT_PATH)
+        relevant_chunks = findPart_faiss(question, top_k=5)
+
     except Exception as e:
         print(f"TXT dosyası okunamadı: ")
         relevant_chunks = []
@@ -118,5 +122,27 @@ async def ask_question_withfile(question: str = Form(...),file: UploadFile | Non
     await upload_document(file)
     
     relevant_chunks = findPart(question, TEMP_TXT)
-     
+    #relevant_chunks = findPart_faiss(question, top_k=5)
+    
     return await CreateResult(relevant_chunks,question,oldQuestionAndAnswer)
+
+EMBEDDING_MODEL = "models/text-embedding-004"
+
+def findPart_faiss(question: str, top_k: int = 5):
+    save_path = os.path.join(VECTOR_DB_PATH, "company_index")
+
+    embeddings = GoogleGenerativeAIEmbeddings(
+        model=EMBEDDING_MODEL,
+        task_type="RETRIEVAL_QUERY"
+    )
+    vector_store = FAISS.load_local(
+        save_path, 
+        embeddings,
+        allow_dangerous_deserialization=True
+    )
+
+    results = vector_store.similarity_search(question, k=top_k)
+    chunks = [r.page_content for r in results]
+
+    return chunks
+
