@@ -56,8 +56,8 @@ async def semantic_scholarSearch(
     indirilen_pdf_sayisi = 0
     sonuclar = []
     downloadedpdfsName = []
-    downloadedpdfsName.append("Test_Dosya_1.pdf")
-    downloadedpdfsName.append("Test_Dosya_2.pdf")
+    #downloadedpdfsName.append("Test_Dosya_1.pdf")
+    #downloadedpdfsName.append("Test_Dosya_2.pdf")
     while indirilen_pdf_sayisi < count:
         time.sleep(5)
         yanit = requests.get(api_url, params=parametreler,headers=headers)
