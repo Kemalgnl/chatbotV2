@@ -34,7 +34,7 @@ router = APIRouter()
 @router.post("/findPdf")
 async def semantic_scholarSearch(
     aranan_kelime: str = Form(...),
-    count: int = 3,
+    count: int = 5,
     limit: int = 10,
     kayit_klasoru: str = kayit_klasoru,
 ):
